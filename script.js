@@ -18,7 +18,7 @@ function exibirMensagem() {
   
     // Cria uma instância do objeto XMLHttpRequest para fazer a requisição HTTP
     var xhr = new XMLHttpRequest();
-    xhr.open("POST", "/url/do/seu/servidor"); // Atualize com a URL do seu servidor
+    xhr.open("POST", "/HelloWorld/"); // Atualize com a URL do seu servidor
     xhr.send(formData);
   }
   
