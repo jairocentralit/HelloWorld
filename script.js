@@ -1,15 +1,5 @@
-document.getElementById('myForm').addEventListener('submit', function(event) {
-    event.preventDefault(); // Evita o comportamento padrão do formulário
-  
-    // Obtém os valores dos campos de nome e sobrenome
-    var nome = document.getElementById('nome').value;
-    var sobrenome = document.getElementById('sobrenome').value;
-  
-    // Exibe uma mensagem de alerta com o nome e sobrenome
-    alert('Nome: ' + nome + '\nSobrenome: ' + sobrenome);
-
-    // Função que é chamada quando o botão de submit é clicado
-    function exibirMensagem() {
+// Função que é chamada quando o botão de submit é clicado
+function exibirMensagem() {
     // Obtém os valores digitados nos campos de nome e sobrenome
     var nome = document.getElementById("nome").value;
     var sobrenome = document.getElementById("sobrenome").value;
@@ -20,7 +10,15 @@ document.getElementById('myForm').addEventListener('submit', function(event) {
     // Concatena os valores de nome e sobrenome em uma mensagem
     var nomeCompleto = nome + " " + sobrenome;
   
-    // Insere a mensagem no campo de mensagem
-    document.getElementById("mensagem").value = "Olá, " + nomeCompleto + "! " + mensagem;
+    // Cria um objeto FormData para armazenar os dados do formulário
+    var formData = new FormData();
+    formData.append("nome", nome);
+    formData.append("sobrenome", sobrenome);
+    formData.append("mensagem", mensagem);
+  
+    // Cria uma instância do objeto XMLHttpRequest para fazer a requisição HTTP
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "/url/do/seu/servidor"); // Atualize com a URL do seu servidor
+    xhr.send(formData);
   }
-  });
+  
