@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerar PDF</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.3/jspdf.umd.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Idade</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>João</td>
+                    <td>25</td>
+                </tr>
+                <tr>
+                    <td>Maria</td>
+                    <td>30</td>
+                </tr>
+                <!-- Adicione mais linhas conforme necessário -->
+            </tbody>
+        </table>
+        <button id="generate-pdf">Gerar PDF</button>
+    </div>
+
+    <script>
+        document.getElementById('generate-pdf').addEventListener('click', function() {
+            generatePDF();
+        });
+
+        function generatePDF() {
+            var doc = new jsPDF();
+            doc.text('Dados da Tabela', 10, 10);
+            
+            var table = document.querySelector('table');
+            var rows = table.querySelectorAll('tr');
+            var yPos = 30;
+
+            for (var i = 0; i < rows.length; i++) {
+                var columns = rows[i].querySelectorAll('td');
+                var xPos = 10;
+
+                for (var j = 0; j < columns.length; j++) {
+                    doc.text(columns[j].innerText, xPos, yPos);
+                    xPos += 40; // Ajuste para a próxima coluna
+                }
+
+                yPos += 10; // Ajuste para a próxima linha
+            }
+
+            doc.save('dados_tabela.pdf');
+        }
+    </script>
+</body>
+</html>
