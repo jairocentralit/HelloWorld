@@ -29,10 +29,14 @@
             var password = document.getElementById("password").value;
 
             if (password === "rita@123") {
-                window.location.href = "sistema.html";
+                wloadSystemPage();
             } else {
                 alert("Senha incorreta. Tente novamente.");
             }
+        }
+
+        function loadSystemPage() {
+            window.location.href = "sistema.html";
         }
     </script>
 </body>
